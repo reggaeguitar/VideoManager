@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoManager", "VideoManager\VideoManager.csproj", "{286301AF-0809-4B3E-BD75-15BA984F4AB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoServices", "VideoServices\VideoServices.csproj", "{5AFAEA9C-9773-46E1-B4FC-15C34EFA9BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoManagerDomain", "VideoManagerDomain\VideoManagerDomain.csproj", "{235B39A0-B814-46D1-BCFF-090DA4C4D710}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{286301AF-0809-4B3E-BD75-15BA984F4AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{286301AF-0809-4B3E-BD75-15BA984F4AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{286301AF-0809-4B3E-BD75-15BA984F4AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{286301AF-0809-4B3E-BD75-15BA984F4AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AFAEA9C-9773-46E1-B4FC-15C34EFA9BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AFAEA9C-9773-46E1-B4FC-15C34EFA9BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AFAEA9C-9773-46E1-B4FC-15C34EFA9BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AFAEA9C-9773-46E1-B4FC-15C34EFA9BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
