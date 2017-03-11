@@ -23,7 +23,7 @@
             <p>{{ tag }}</p>
           </div>
         </div>
-        <button v-on:click="delete(video)">Delete</button>
+        <button v-on:click="deleteVideo(video)">Delete</button>
         <hr />
       </div>
     </div>
@@ -58,13 +58,13 @@ export default {
   methods: {
     openInNewTabAndIncrementVisitCount: function(video) {
       this.videos = undefined;
-      var videoId = video.Id;
+      var videoId = video.VideoId;
       axios.get(serviceUrl + 'increment/' + videoId);
       this.loadVideos();
       window.open(video.Url, '_blank');
     },
     deleteVideo: function(video) {
-      var videoId = video.Id;
+      var videoId = video.VideoId;
       axios.get(serviceUrl + 'delete/' + videoId);
       this.loadVideos();
     }
