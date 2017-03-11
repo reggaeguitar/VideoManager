@@ -12,10 +12,10 @@ namespace VideoManager.Tests
 
         public BaseUnitTestClass()
         {
-            var customization = new LazyEntityGraphCustomization(
-                ModelMetadataGenerator.LoadFromCodeFirstContext(str => new VideoManagerContext(str), true));
+            //var customization = new LazyEntityGraphCustomization(
+            //    ModelMetadataGenerator.LoadFromCodeFirstContext(str => new VideoManagerContext(str), true));
             Fixture = new Fixture();
-            Fixture.Customize(customization);
+            //Fixture.Customize(customization);
         }
 
         public T GetFake<T>()

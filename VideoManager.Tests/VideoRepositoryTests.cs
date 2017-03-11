@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using VideoManager.EntityFramework;
 using VideoManagerDomain;
@@ -19,12 +18,9 @@ namespace VideoManager.Tests
             return new VideoRepository(ctxFactory, videoDtoConverter);
         }
 
-        //void DeleteVideo(int videoId);
-
         [Test]
         public void VideoRepository_IncrementVisitCount_IncrementsVisitCountCorrectly()
         {
-            var a = GetRandom<Video>();
             // Arrange
             var dbInfo = SetUpFakeDb();
             var ctx = dbInfo.Item1;
