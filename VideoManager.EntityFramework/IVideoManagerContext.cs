@@ -10,5 +10,6 @@ namespace VideoManager.EntityFramework
         IDbSet<Video> Video { get; set; }
         Database Database { get; }
         int SaveChanges();
+        void SetModified(object entity);
     }
 }

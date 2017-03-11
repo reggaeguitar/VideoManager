@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using VideoManager.EntityFramework;
 using VideoManagerDomain;
@@ -18,8 +19,6 @@ namespace VideoManager.Tests
             return new VideoRepository(ctxFactory, videoDtoConverter);
         }
 
-        //Video LoadVideo(int videoId);
-        //void EditVideo(Video video);
         //void DeleteVideo(int videoId);
 
         [Test]
@@ -110,25 +109,84 @@ namespace VideoManager.Tests
             CollectionAssert.AreEqual(vidDtos, res);
         }
 
-        //[Test]
-        //public void VideoRepository_LoadVideo_LoadsVideoCorrectly()
-        //{
-        //    // Arrange
-        //    //var dbInfo = SetUpFakeDb();
-        //    //var ctx = dbInfo.Item1;
-        //    //var ctxFactory = dbInfo.Item2;
-        //    //var connStrName = dbInfo.Item3;
+        [Test]
+        public void VideoRepository_LoadVideo_LoadsVideoCorrectly()
+        {
+            // Arrange
+            var dbInfo = SetUpFakeDb();
+            var ctx = dbInfo.Item1;
+            var ctxFactory = dbInfo.Item2;
+            var connStrName = dbInfo.Item3;
+            var videoDtoConverter = dbInfo.Item4;
 
-        //    //var vidId = GetRandomInt();
+            var vidId = GetRandomInt();
 
-        //    //var vidToFind = GetFake<Video>();
+            var vidToFind = GetFake<Video>();
+            vidToFind.VideoId = vidId;
+            ctx.Video.Add(vidToFind);
+            var expected = GetFake<VideoDto>();
+            A.CallTo(() => videoDtoConverter.VideoToVideoDto(vidToFind)).Returns(expected);
 
-        //    //var sut = GetSut(ctxFactory);
-        //    // Act
+            var sut = GetSut(ctxFactory, videoDtoConverter);
 
-        //    // Assert
-        //    //Assert.Fail();
-        //}
+            // Act
+            var res = sut.LoadVideo(connStrName, vidId);
+
+            // Assert
+            Assert.AreEqual(expected, res);
+        }
+
+        [Test]
+        public void VideoRepository_EditVideo_EditsVideoCorrectly()
+        {
+            // Arrange
+            // Arrange
+            var dbInfo = SetUpFakeDb();
+            var ctx = dbInfo.Item1;
+            var ctxFactory = dbInfo.Item2;
+            var connStrName = dbInfo.Item3;
+            var videoDtoConverter = dbInfo.Item4;
+
+            var video = GetFake<Video>();
+            video.VideoId = GetRandomInt();
+
+            var videoDto = GetFake<VideoDto>();
+            videoDto.VideoId = video.VideoId;
+
+            A.CallTo(() => videoDtoConverter.VideoDtoToVideo(videoDto)).Returns(video);            
+
+            var sut = GetSut(ctxFactory, videoDtoConverter);
+
+            // Act
+            sut.EditVideo(connStrName, videoDto);
+
+            // Assert
+            Assert.AreEqual(video, ctx.Video.Single());
+        }
+        
+        [Test]
+        public void VideoRepository_DeleteVideo_DeletesVideoCorrectly()
+        {
+            // Arrange            
+            var dbInfo = SetUpFakeDb();
+            var ctx = dbInfo.Item1;
+            var ctxFactory = dbInfo.Item2;
+            var connStrName = dbInfo.Item3;
+            var videoDtoConverter = dbInfo.Item4;
+
+            var videoId = GetRandomInt();
+            var video = GetFake<Video>();
+            video.VideoId = videoId;
+            ctx.Video.Add(video);
+
+            var sut = GetSut(ctxFactory, videoDtoConverter);
+
+            // Act
+            sut.DeleteVideo(connStrName, videoId);
+
+            // Assert
+            Assert.AreEqual(0, ctx.Video.Count());
+        }
 
         private Tuple<IVideoManagerContext, IVideoManagerContextFactory, string, IVideoDtoConverter>  SetUpFakeDb()
         {

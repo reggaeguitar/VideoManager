@@ -25,5 +25,10 @@ namespace VideoManager.EntityFramework
                 .WithMany(e => e.Tag)
                 .Map(m => m.ToTable("TagVideo").MapLeftKey("TagId").MapRightKey("VideoId"));
         }
+
+        public void SetModified(object entity)
+        {
+            Entry(entity).State = EntityState.Modified;
+        }
     }
 }

@@ -31,12 +31,23 @@ namespace VideoServices
 
         public void DeleteVideo(string connStrName, int videoId)
         {
-            throw new NotImplementedException();
+            using (var ctx = _ctxFactory.Create(connStrName))
+            {
+                var vidToDelete = ctx.Video.Single(x => x.VideoId == videoId);
+                ctx.Video.Remove(vidToDelete);
+                ctx.SaveChanges();
+            }
         }
 
         public void EditVideo(string connStrName, VideoDto videoDto)
         {
-            throw new NotImplementedException();
+            var video = _videoDtoConverter.VideoDtoToVideo(videoDto);
+            using (var ctx = _ctxFactory.Create(connStrName))
+            {
+                ctx.Video.Attach(video);
+                ctx.SetModified(video);
+                ctx.SaveChanges();
+            }
         }
 
         public void IncrementVisitCount(string connStrName, int videoId)
@@ -66,7 +77,12 @@ namespace VideoServices
 
         public VideoDto LoadVideo(string connStrName, int videoId)
         {
-            throw new NotImplementedException();
+            using (var ctx = _ctxFactory.Create(connStrName))
+            {
+                var vid = ctx.Video.Single(x => x.VideoId == videoId);
+                var ret = _videoDtoConverter.VideoToVideoDto(vid);
+                return ret;
+            }
         }
     }
 }
