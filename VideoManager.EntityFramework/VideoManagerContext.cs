@@ -5,9 +5,13 @@ namespace VideoManager.EntityFramework
 
     public partial class VideoManagerContext : DbContext, IDisposable, IVideoManagerContext
     {
-        public VideoManagerContext(string connStrName)
-            : base("name=" + connStrName)
-        { }        
+        //public VideoManagerContext(string connStrName)
+        //    : base("name=" + connStrName)
+        //{ }        
+
+        public VideoManagerContext(string foo)
+        : base("name=VideoManagerContext")
+        { }
 
         public virtual IDbSet<Actor> Actor { get; set; }
         public virtual IDbSet<Tag> Tag { get; set; }

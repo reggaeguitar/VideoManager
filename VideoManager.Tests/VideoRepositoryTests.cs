@@ -24,6 +24,7 @@ namespace VideoManager.Tests
         [Test]
         public void VideoRepository_IncrementVisitCount_IncrementsVisitCountCorrectly()
         {
+            var a = GetRandom<Video>();
             // Arrange
             var dbInfo = SetUpFakeDb();
             var ctx = dbInfo.Item1;

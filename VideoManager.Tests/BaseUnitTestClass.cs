@@ -1,11 +1,22 @@
 ﻿using FakeItEasy;
+using LazyEntityGraph.AutoFixture;
+using LazyEntityGraph.EntityFramework;
 using Ploeh.AutoFixture;
+using VideoManager.EntityFramework;
 
 namespace VideoManager.Tests
 {
     public class BaseUnitTestClass
     {
-        private static Fixture Fixture = new Fixture();
+        private static Fixture Fixture;
+
+        public BaseUnitTestClass()
+        {
+            var customization = new LazyEntityGraphCustomization(
+                ModelMetadataGenerator.LoadFromCodeFirstContext(str => new VideoManagerContext(str), true));
+            Fixture = new Fixture();
+            Fixture.Customize(customization);
+        }
 
         public T GetFake<T>()
         {
