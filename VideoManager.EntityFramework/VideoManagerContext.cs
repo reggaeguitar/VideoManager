@@ -1,16 +1,17 @@
 namespace VideoManager.EntityFramework
 {
+    using System;
     using System.Data.Entity;
 
-    public partial class VideoManagerContext : DbContext
+    public partial class VideoManagerContext : DbContext, IDisposable, IVideoManagerContext
     {
-        public VideoManagerContext()
-            : base("name=VideoManagerContext")
+        public VideoManagerContext(string connStrName)
+            : base("name=" + connStrName)
         { }        
 
-        public virtual DbSet<Actor> Actor { get; set; }
-        public virtual DbSet<Tag> Tag { get; set; }
-        public virtual DbSet<Video> Video { get; set; }
+        public virtual IDbSet<Actor> Actor { get; set; }
+        public virtual IDbSet<Tag> Tag { get; set; }
+        public virtual IDbSet<Video> Video { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

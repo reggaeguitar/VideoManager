@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VideoManager.Models
-{
+namespace VideoManagerDomain
+{ 
     [Serializable]
-    public class Video
+    public class VideoDto
     {
         public ICollection<string> Actors { get; private set; }
         public DateTime DateAdded { get; private set; }
@@ -17,7 +17,7 @@ namespace VideoManager.Models
         public string Url { get; private set; }
         public int VisitCount { get; private set; }
 
-        public Video(
+        public VideoDto(
             ICollection<string> actors,
             DateTime dateAdded,
             int id,

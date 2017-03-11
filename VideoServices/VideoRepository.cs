@@ -1,40 +1,72 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using VideoManager.Models;
+using VideoManager.EntityFramework;
+using VideoManagerDomain;
 
 namespace VideoServices
 {
     public class VideoRepository : IVideoRepository
     {
-        const string Path = @"C:\p\golfData.json";
+        private readonly IVideoManagerContextFactory _ctxFactory;
+        private readonly IVideoDtoConverter _videoDtoConverter;
 
-        public void DeleteVideo(int videoId)
+        public VideoRepository(
+            IVideoManagerContextFactory ctxFactory,
+            IVideoDtoConverter videoDtoConverter)
+        {
+            _ctxFactory = ctxFactory;
+            _videoDtoConverter = videoDtoConverter;
+        }
+
+        public void CreateVideo(string connStrName, VideoDto videoDto)
+        {
+            var vid = _videoDtoConverter.VideoDtoToVideo(videoDto);
+            using (var ctx = _ctxFactory.Create(connStrName))
+            {
+                ctx.Video.Add(vid);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void DeleteVideo(string connStrName, int videoId)
         {
             throw new NotImplementedException();
         }
 
-        public void IncrementVisitCount(int videoId)
+        public void EditVideo(string connStrName, VideoDto videoDto)
         {
-            var videos = LoadAllVideos();
-            var vid = videos.Single(x => x.Id == videoId);
-            vid.IncrementVisitCount();
-            WriteVideos(videos.ToList());
-        }        
-
-        public ICollection<Video> LoadAllVideos()
-        {
-            var fileContents = File.ReadAllText(Path);
-            var videos = JsonConvert.DeserializeObject<List<Video>>(fileContents);
-            return videos;
+            throw new NotImplementedException();
         }
 
-        private void WriteVideos(List<Video> videos)
+        public void IncrementVisitCount(string connStrName, int videoId)
         {
-            var json = JsonConvert.SerializeObject(videos);
-            File.WriteAllText(Path, json);
+            using (var ctx = _ctxFactory.Create(connStrName))
+            {
+                var vid = ctx.Video.Single(x => x.VideoId == videoId);
+                ++vid.VisitCount;
+                ctx.SaveChanges();
+            }
+        }
+
+        public ICollection<VideoDto> LoadAllVideos(string connStrName)
+        {
+            var ret = new List<VideoDto>();
+            using (var ctx = _ctxFactory.Create(connStrName))
+            {
+                var vids = ctx.Video.ToList();
+                foreach (var vid in vids)
+                {
+                    var vidDto = _videoDtoConverter.VideoToVideoDto(vid);
+                    ret.Add(vidDto);
+                }
+            }
+            return ret;
+        }
+
+        public VideoDto LoadVideo(string connStrName, int videoId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -29,7 +29,6 @@ namespace VideoManager.EntityFramework
         public string Title { get; set; }
 
         [Required]
-        [StringLength(300)]
         public string Url { get; set; }
 
         public int VisitCount { get; set; }
