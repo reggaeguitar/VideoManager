@@ -7,5 +7,6 @@ namespace VideoServices
     {
         ICollection<Video> LoadAllVideos();
         void IncrementVisitCount(int videoId);
+        void DeleteVideo(int videoId);
     }
 }

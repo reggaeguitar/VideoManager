@@ -11,6 +11,11 @@ namespace VideoServices
     {
         const string Path = @"C:\p\golfData.json";
 
+        public void DeleteVideo(int videoId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void IncrementVisitCount(int videoId)
         {
             var videos = LoadAllVideos();

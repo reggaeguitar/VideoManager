@@ -1,65 +1,80 @@
 ﻿<template>
-  <!--<ol>
-	<li v-for='video in videos'>
-		<label>Title:</label>{{ video.Title }}<br />
-		<a :href='video.Url'>{{ video.Url }}</a><br />
-		<label>Points:</label>{{ video.Points }}<br />
-		<label>Visit count:</label>{{ video.VisitCount }}<br />
-		<label>Date added:</label>{{ video.DateAdded }}<br />
-		<label>Last visited:</label>{{ video.LastVisited }}<br />               
-		<h4>Actors</h4>
-		<ol>
-			<li v-for='actor in video.Actors'>
-				<p>{{ actor }}</p>
-			</li>
-		</ol>
-		<h4>Tags</h4>
-		<ol>
-			<li v-for='tag in video.Tags'>
-				<p>{{ tag }}</p>
-			</li>
-		</ol>
-	</li>
-</ol>-->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">WebSiteName</a>
+  <div>
+    <div class="container">
+      <div class="col-md-4" v-for='video in videos'>
+        <label>Title:</label>{{ video.Title }}<br />
+        <div class="linklike"
+             v-on:click="openInNewTabAndIncrementVisitCount(video)">
+          {{ video.Url }}
+        </div><br />
+        <label>Points:</label>{{ video.Points }}<br />
+        <label>Visit count:</label>{{ video.VisitCount }}<br />
+        <label>Date added:</label>{{ video.DateAdded }}<br />
+        <label>Last visited:</label>{{ video.LastVisited }}<br />
+        <h4 class="te">Actors</h4>
+        <div>
+          <div v-for='actor in video.Actors'>
+            <span class="badge">{{ actor }}</span>
+          </div>
+        </div>
+        <h4>Tags</h4>
+        <div>
+          <div v-for='tag in video.Tags'>
+            <p>{{ tag }}</p>
+          </div>
+        </div>
+        <button v-on:click="delete(video)">Delete</button>
+        <hr />
       </div>
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">Page 1</a>
-        </li>
-        <li>
-          <a href="#">Page 2</a>
-        </li>
-        <li>
-          <a href="#">Page 3</a>
-        </li>
-      </ul>
     </div>
-  </nav>
+  </div>
 </template>
 <script>
-  import axios from 'axios';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
 
-  export default {
-    name: 'app',
-    data: () => ({
-      videos: [{ Url: 'test' }]
-    }),
+const serviceUrl = 'http://localhost:13672/api/';
 
-    created() {
-      axios.get('http://localhost:13672/api/videos')
-        .then(response => {        
-      this.videos = response.data
+export default {
+  name: 'app',
+  data: () => ({
+    videos: [{ Url: 'test' }],
+
+    loadVideos: function() {
+      axios.get(serviceUrl + 'videos')
+      .then(response => {
+        this.videos = response.data
       })
       .catch(e => {
-      console.log(e);
-      })
+        console.log(e);
+      });
+    }
+  }),
+
+  created() {
+    this.loadVideos();
+  },
+
+  methods: {
+    openInNewTabAndIncrementVisitCount: function(video) {
+      this.videos = undefined;
+      var videoId = video.Id;
+      axios.get(serviceUrl + 'increment/' + videoId);
+      this.loadVideos();
+      window.open(video.Url, '_blank');
+    },
+    deleteVideo: function(video) {
+      var videoId = video.Id;
+      axios.get(serviceUrl + 'delete/' + videoId);
+      this.loadVideos();
     }
   }
+}
 </script>
+<style> 
+  .linklike {
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+  }
+</style>

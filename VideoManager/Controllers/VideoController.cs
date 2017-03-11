@@ -31,5 +31,12 @@ namespace VideoManager.Controllers
         {
             _videoRepository.IncrementVisitCount(videoId);
         }
+
+        [HttpGet]
+        [Route("api/delete/{videoId}")]
+        public void DeleteVideo(int videoId)
+        {
+            _videoRepository.DeleteVideo(videoId);
+        }
     }
 }
