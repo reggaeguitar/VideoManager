@@ -8,6 +8,7 @@ namespace VideoManager.Models
     {
         public ICollection<string> Actors { get; private set; }
         public DateTime DateAdded { get; private set; }
+        public int Id { get; private set; }
         //public File Image { get; private set; }
         public DateTime LastVisited { get; private set; }
         public int Points { get; private set; }
@@ -19,6 +20,7 @@ namespace VideoManager.Models
         public Video(
             ICollection<string> actors,
             DateTime dateAdded,
+            int id,
             DateTime lastVisited,
             int points,
             string title,
@@ -28,12 +30,18 @@ namespace VideoManager.Models
         {
             Actors = actors;
             DateAdded = dateAdded;
+            Id = id;
             LastVisited = lastVisited;
             Points = points;
             Title = title;
             Tags = tags;
             Url = url;
             VisitCount = visitCount;
-        }       
+        }
+        
+        public void IncrementVisitCount()
+        {
+            ++this.VisitCount;
+        }    
     }
 }

@@ -24,5 +24,12 @@ namespace VideoManager.Controllers
             var ret = _videoRepository.LoadAllVideos();
             return Json(ret);
         }
+
+        [HttpGet]
+        [Route("api/increment/{videoId}")]
+        public void IncrementVisitCount(int videoId)
+        {
+            _videoRepository.IncrementVisitCount(videoId);
+        }
     }
 }

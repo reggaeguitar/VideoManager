@@ -1,5 +1,5 @@
 ﻿<template>
-<ol>
+  <!--<ol>
 	<li v-for='video in videos'>
 		<label>Title:</label>{{ video.Title }}<br />
 		<a :href='video.Url'>{{ video.Url }}</a><br />
@@ -20,28 +20,46 @@
 			</li>
 		</ol>
 	</li>
-</ol>
+</ol>-->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Page 1</a>
+        </li>
+        <li>
+          <a href="#">Page 2</a>
+        </li>
+        <li>
+          <a href="#">Page 3</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 <script>
-import axios from 'axios';
+  import axios from 'axios';
 
-export default {
-  name: 'app',
-  data: () => ({
-	videos: [{ Url: 'test' }]
-  }),
+  export default {
+    name: 'app',
+    data: () => ({
+      videos: [{ Url: 'test' }]
+    }),
 
-  created() {
-    axios.get('http://localhost:13672/api/videos')
-    .then(response => {
-      // JSON responses are automatically parsed.
-	  console.log(response)
+    created() {
+      axios.get('http://localhost:13672/api/videos')
+        .then(response => {        
       this.videos = response.data
-    })
-    .catch(e => {
+      })
+      .catch(e => {
       console.log(e);
-      //this.errors.push(e)
-    })
+      })
+    }
   }
-}
 </script>

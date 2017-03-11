@@ -6,5 +6,6 @@ namespace VideoServices
     public interface IVideoRepository
     {
         ICollection<Video> LoadAllVideos();
+        void IncrementVisitCount(int videoId);
     }
 }
