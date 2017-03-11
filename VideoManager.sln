@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoServices", "VideoServi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoManagerDomain", "VideoManagerDomain\VideoManagerDomain.csproj", "{235B39A0-B814-46D1-BCFF-090DA4C4D710}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VideoManager.Database", "VideoManager.Database\VideoManager.Database.sqlproj", "{AD5CF045-6E27-45F8-B331-65D73969C562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoManager.EntityFramework", "VideoManager.EntityFramework\VideoManager.EntityFramework.csproj", "{277CF30D-3B30-4E47-BF13-335CB28ADDE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,16 @@ Global
 		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235B39A0-B814-46D1-BCFF-090DA4C4D710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5CF045-6E27-45F8-B331-65D73969C562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5CF045-6E27-45F8-B331-65D73969C562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5CF045-6E27-45F8-B331-65D73969C562}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AD5CF045-6E27-45F8-B331-65D73969C562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5CF045-6E27-45F8-B331-65D73969C562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5CF045-6E27-45F8-B331-65D73969C562}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{277CF30D-3B30-4E47-BF13-335CB28ADDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277CF30D-3B30-4E47-BF13-335CB28ADDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{277CF30D-3B30-4E47-BF13-335CB28ADDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{277CF30D-3B30-4E47-BF13-335CB28ADDE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
