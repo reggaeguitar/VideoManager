@@ -6,8 +6,7 @@ namespace VideoManager.EntityFramework
     {
         public IVideoManagerContext Create(string connStrName)
         {
-            //return new VideoManagerContext(connStrName);
-            return null;
+            return new VideoManagerContext(connStrName);
         }
     }
 }

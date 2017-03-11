@@ -58,6 +58,10 @@
       <HintPath>..\packages\LazyEntityGraph.EntityFramework.1.0.0\lib\net452\LazyEntityGraph.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -69,6 +73,18 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +96,7 @@
     <Compile Include="BaseUnitTestClass.cs" />
     <Compile Include="FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VideoControllerTests.cs" />
     <Compile Include="VideoDtoConverterTests.cs" />
     <Compile Include="VideoRepositoryTests.cs" />
   </ItemGroup>
@@ -95,6 +112,10 @@
     <ProjectReference Include="..\VideoManagerDomain\VideoManagerDomain.csproj">
       <Project>{235B39A0-B814-46D1-BCFF-090DA4C4D710}</Project>
       <Name>VideoManagerDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoManager\VideoManager.csproj">
+      <Project>{286301AF-0809-4B3E-BD75-15BA984F4AB0}</Project>
+      <Name>VideoManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\VideoServices\VideoServices.csproj">
       <Project>{5AFAEA9C-9773-46E1-B4FC-15C34EFA9BFE}</Project>

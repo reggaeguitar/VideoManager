@@ -53,11 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActorDtoConverter.cs" />
     <Compile Include="IActorDtoConverter.cs" />
     <Compile Include="ITagDtoConverter.cs" />
     <Compile Include="IVideoDtoConverter.cs" />
     <Compile Include="IVideoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagDtoConverter.cs" />
     <Compile Include="VideoDtoConverter.cs" />
     <Compile Include="VideoRepository.cs" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace VideoManager
 {
@@ -11,7 +13,9 @@ namespace VideoManager
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.EnableCors();
+            config.EnableCors();            
+
+            var cors = new EnableCorsAttribute("http://www.localhost:8080", "*", "*");
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

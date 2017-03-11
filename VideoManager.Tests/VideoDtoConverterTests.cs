@@ -68,5 +68,19 @@ namespace VideoManager.Tests
             Assert.AreEqual(video.VideoId, res.VideoId);
             Assert.AreEqual(video.VisitCount, res.VisitCount);
         }
+
+        [Test]
+        public void VideoDtoConverter_VideoDtoToVideo_ConvertsCorrectly()
+        {
+            // Arrange
+            var actorDtoConverter = GetFake<IActorDtoConverter>();
+            var tagDtoConverter = GetFake<ITagDtoConverter>();
+
+            var sut = GetSut(actorDtoConverter, tagDtoConverter);
+
+            // Act
+
+            // Assert
+        }
     }
 }

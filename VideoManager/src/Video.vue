@@ -1,5 +1,4 @@
-﻿<root></root>
-<!--<template>
+﻿<template>
   <div>
     <div class="container">
       <div class="col-md-4" v-for='video in videos'>
@@ -78,4 +77,4 @@ export default {
     color:blue;
     text-decoration:underline;
   }
-</style>-->
+</style>
